@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} 投稿修正 {% endblock %}
+
+{% block content %}
+<div class="container">
+    <form method="POST" class="w-60 p-4 m-4 bg-light border border-dark rounded" enctype="multipart/form-data">{% csrf_token%}
+        {{form.as_p}}
+        <input type="submit" class="btn btn-success mt-4" value="修正する">
+    </form>
+</div>
+{% endblock content %}

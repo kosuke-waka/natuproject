@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}投稿詳細{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="p-4 m-4 bg-light border border-dark rounded">
+        <div class="p-3 mb-2 bg-warning text-dark">
+            <h2 class="text-dark"><span class="badge badge-secondary">{{ object.category }} </span>　　{{ object.title }}</h2>
+        </div>
+        <span class="badge badge-success">{{ object.youser_id }}</span>
+        <p class="card-text">{{ object.text }}</p>
+        {% if object.file %}
+            <object data="{{ object.file.url }}" type="text" width="100%" height="50%"></object>
+        {% else %}
+            <p class="mt-3">{{ object.file }}</p>
+        {% endif %}
+
+        <div class="border p-4 mb-2">
+            {% if not object.review_set.all %}
+                <div>
+                    <div class="px-2">
+                        <p>レビューなし</p>
+                    </div>
+                </div>
+            {% else %}
+                {% for review in object.review_set.all %}
+                    <div>
+                        <h3 class="h4">{{ review.title }}</h3>
+                        <div class="px-2">
+                            <span>(投稿ユーザ：　{{ review.user.username }})</span>
+                            <h6>評価：{{ review.rate }}点</h6>
+                            <p>{{ review.text }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <!--<a href="{% url 'list-book' %}" class="btn btn-primary">一覧へ</a>-->
+        <a href="{% url 'review' object.pk %}" class="btn btn-primary">レビュー</a>
+        <a href="{% url 'update-book'  object.pk %}" class="btn btn-primary">編集する</a>
+        <a href="{% url 'delete-book'  object.pk %}" class="btn btn-primary">削除する</a>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}投稿一覧{% endblock %}
+
+{% block content %}
+{% for item in object_list %}
+<div class="p-4 m-4 bg-light border border-dark rounded">
+    <div class="p-3 mb-2 bg-warning text-dark">
+        <h2 class="text-dark"><span class="badge badge-secondary">{{ item.category }} </span>　　{{ item.title }}</h2>
+    </div>
+    <span class="badge badge-success">{{ item.youser_id }}</span>
+    <p class="mt-3">{{ item.text }}</p>
+    <p class="mt-3">{{ item.file }}</p>
+    <a href="{% url 'detail-book' item.pk %}" class="btn btn-primary">詳細へ</a>
+
+</div>
+{% endfor %}
+{% endblock content %}
