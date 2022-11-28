@@ -16,7 +16,7 @@ from .consts import BOOK_PRE_PAGE,RANKING_VIEW_PAGE
 
 
 # Create your views here.
-class ListBookView(LoginRequiredMixin,ListView):
+class ListBookView(ListView):
     template_name: str = 'book/book_list.html'
     queryset = Book.objects.order_by('-id')
     paginate_by = BOOK_PRE_PAGE
@@ -27,7 +27,7 @@ class ListBookView(LoginRequiredMixin,ListView):
         #print(context)
         print(Book.objects.annotate(avg_rating=Avg('review__rate')).order_by('-avg_rating')[:RANKING_VIEW_PAGE])
         #ranking_list = Book.objects.annotate(avg_rating=Avg('review__rate')).order_by('-avg_rating')
-        
+
         """
         paginator = Paginator(ranking_list,2)
         page_number = self.request.GET.get('page',1)

@@ -25,15 +25,17 @@ LOGOUN_REDIRECT_URL = 'logout'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = get_random_secret_key()  
+SECRET_KEY = get_random_secret_key()
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
+#ALLOWED_HOSTS = ['kosukewaka.pythonanywhere.com']
+#ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', '{|kosukewaka|}.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com']
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', '{|kosukewaka|}.pythonanywhere.com']
 
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
+#SESSION_COOKIE_SECURE = True
 
 # Application definition
 
@@ -147,3 +149,4 @@ else:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SESSION_COOKIE_AGE = 3600
+STATIC_ROOT = Path(BASE_DIR / 'static')
